@@ -12,38 +12,45 @@
     <div class="small-6 columns">
       <h1 class="text-center">PLAYER</h1>
       <div class="wins">
-        <div class="wins text-center" style="background-color: green; margin: 0; color: white;">
-
+        <div class="wins text-center" style="background-color: green; margin: 0; color: white;":style="{width: playerWins + '0%'}">
+            {{playerWins}}
         </div>
       </div>
     </div>
     <div class="small-6 columns">
       <h1 class="text-center">COMPUTER</h1>
       <div class="wins">
-        <div class="wins text-center" style="background-color: green; margin: 0; color: white;">
-         
+        <div class="wins text-center" style="background-color: green; margin: 0; color: white;" :style="{width: computerWins + '0%'}">
+            {{computerWins}}
         </div>
       </div>
     </div>
   </section>
-  <section class="row controls">
+
+  <!--START GAME-->
+  <section class="row controls" v-if="show">
     <div class="small-12 columns">
-      <button id="start-game">START NEW GAME</button>
+      <button id="start-game"  @click="show = !show" @click="startGame">START NEW GAME</button>
     </div>
   </section>
-  <section class="row controls">
+
+  <!--ROCK PAPER SCISSORS Buttons-->
+  <section v-show="!show" class="row controls">
     <div class="small-12 columns">
-      <button id="rock">ROCK</button>
-      <button id="paper">PAPER</button>
-      <button id="scissors">SCISSORS</button>
-      <button id="restart">RESTART</button>
+      <button id="rock" @click="userRock">ROCK</button>
+      <button id="paper" @click="userPaper">PAPER</button>
+      <button id="scissors" @click="userScissors">SCISSORS</button>
+
+      <!--RESTART button-->
+      <button id="restart" @click="startGame">RESTART</button>
     </div>
   </section>
   <section class="row log">
     <div class="small-12 columns">
       <ul>
-        <li>
-          
+        <li v-for="turn in turns"
+        :class="{'player-turn': turn.isPlayer, 'computer-turn': !turn.isPlayer, 'tie-turn':turn.tie}">
+          {{turn.text}}
         </li>
       </ul>
     </div>
