@@ -28,24 +28,24 @@
   </section>
 
   <!--START GAME-->
-  <section class="row controls" v-if="show">
+  <section class="row controls" >
     <div class="small-12 columns">
-      <button id="start-game"  @click="show = !show" @click="startGame">START NEW GAME</button>
+      <button id="start-game"   @click="startGame">START NEW GAME</button>
     </div>
   </section>
 
   <!--ROCK PAPER SCISSORS Buttons-->
-  <section v-show="!show" class="row controls">
+  <section v-show="showGame" class="row controls">
     <div class="small-12 columns">
       <button id="rock" @click="userRock">ROCK</button>
       <button id="paper" @click="userPaper">PAPER</button>
       <button id="scissors" @click="userScissors">SCISSORS</button>
 
       <!--RESTART button-->
-      <button id="restart" @click="startGame">RESTART</button>
+      <button id="restart" @click="restartGame">RESTART</button>
     </div>
   </section>
-  <section class="row log">
+  <section class="row log" v-show="showGame">
     <div class="small-12 columns">
       <ul>
         <li v-for="turn in turns"

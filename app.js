@@ -4,24 +4,27 @@ new Vue({
     show: true,
     playerWins: 0,
     computerWins: 0,
-    gameIsRunning: false,
+    // gameIsRunning: false,
     rock: 1,
     paper: 2,
     scissors: 3,
     turns: [],
+      showGame: false,
   },
   methods: {
     startGame: function(){
-      this.gameIsRunning = true;
+      // this.gameIsRunning = true;
       this.playerWins = 0;
       this.computerWins = 0;
-      this.turn = [];
+      this.turns = [];
+      this.showGame = true;
     },
     restartGame: function(){
-      this.gameIsRunning = true;
+      // this.gameIsRunning = false;
       this.playerWins = 0;
       this.computerWins = 0;
-      this.turn = [];
+      this.turns = [];
+      this.showGame = false;
     },
     userRock: function(){
       //generate computer choice
@@ -91,7 +94,7 @@ new Vue({
           //generate computer choice
           var computer = this.computerChoice();
           //output of winner
-          // rcok
+          // rock
           if(computer === this.rock){
               this.computerWins += 1;
               this.turns.unshift({
@@ -142,14 +145,14 @@ new Vue({
         if(confirm('You Win! New Game.')){
           this.startGame();
         }else{
-          this.GameIsRunning = false;
+          this.gameIsRunning = false;
         }
       }
       else if (this.computerWins === 10){
           if(confirm('Computer Won! New Game.')){
               this.startGame();
           }else{
-              this.GameIsRunning = false;
+              this.gameIsRunning = false;
           }
       }
     },
